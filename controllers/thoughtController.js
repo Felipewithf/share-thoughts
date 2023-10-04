@@ -89,4 +89,39 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
+  /// ******* REACTIONS CONTROLLER ********* ///
+
+  // new Reaction
+  async newReaction(req, res) {
+    try {
+      const new_Reaction = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $push: { reactions: { ...req.body } } },
+        { new: true }
+      );
+      //req.body should be:
+      //  {
+      //   "reactionBody": "the reaction to that thought!",
+      //    "username": "Eiji"
+      // }
+      res.json(new_Reaction);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  // remove a Reaction
+  async removeReaction(req, res) {
+    try {
+      const remove_Reaction = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { new: true }
+      );
+      res.json(remove_Reaction);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };

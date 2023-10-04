@@ -82,7 +82,7 @@ module.exports = {
     }
   },
 
-  /// ******* FRIENDS ROUTES ********* ///
+  /// ******* FRIENDS CONTROLLER ********* ///
 
   // New Friend
   async newFriend(req, res) {
