@@ -5,7 +5,7 @@ module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find().select("-__v");
       // const studentObj = {
       //   students,
       //   headCount: await headCount(),
@@ -24,6 +24,10 @@ module.exports = {
         .select("-__v")
         .populate({
           path: "user_thoughts",
+          select: "-__v",
+        })
+        .populate({
+          path: "friends",
           select: "-__v",
         });
 
@@ -49,35 +53,48 @@ module.exports = {
     }
   },
 
-    // update User
-    async updateUser(req, res) {
-      try {
-        const user = await User.findOneAndUpdate(
-          { _id: req.params.userId },
-          {username: req.body.username, email:req.body.email },
-          {new: true},
-          );
-        //req.body should be:
-        //   {
-        //    "username": "alexis",
-        //    "email": "alexisssss@gmail.com"
-        //   }
-        res.json(user);
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    },
+  // update User
+  async updateUser(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { username: req.body.username, email: req.body.email },
+        { new: true }
+      );
+      //req.body should be:
+      //   {
+      //    "username": "alexis",
+      //    "email": "alexisssss@gmail.com"
+      //   }
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
-    // delete User
-    async deleteUser(req, res) {
-      try {
-        const user = await User.findOneAndDelete(
-          { _id: req.params.userId }
-          );
-        res.json(user);
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    },
+  // delete User
+  async deleteUser(req, res) {
+    try {
+      const user = await User.findOneAndDelete({ _id: req.params.userId });
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
+  /// ******* FRIENDS ROUTES ********* ///
+
+  // New Friend
+  async newFriend(req, res) {
+    try {
+      const new_friend = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $push: { friends: req.params.friendId } },
+        { new: true }
+      );
+      res.json(new_friend);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
