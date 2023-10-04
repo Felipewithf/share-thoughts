@@ -9,23 +9,27 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
       minlength: 1,
-      max_length: 280,
+      maxlength: 280,
     },
     createdAt: {
       type: Date,
       required: true,
       default: Date.now,
     },
-    username: [userSchema],
+    username: {
+      type: String,
+      required: true,
+    },
     reactions: [reactionSchema],
   },
   {
     toJSON: {
       getters: true,
     },
+    id: false,
   }
 );
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model("thought", thoughtSchema);
 
 module.exports = Thought;
