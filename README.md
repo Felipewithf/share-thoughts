@@ -36,9 +36,9 @@ Test by doing the following
 
 ## Video demos
 
-![video demo for user, thoughts, friend API](https://drive.google.com/file/d/1jO6mDHxrr4P29wIoXRsOSl3PToz1ufOC/view)
+[video demo for user, thoughts, friend API](https://drive.google.com/file/d/1jO6mDHxrr4P29wIoXRsOSl3PToz1ufOC/view)
 
-![video demo for reaction API](https://drive.google.com/file/d/1ujUdwStBSq8sNsZD5WDLanY9dN-kDyhk/view)
+[video demo for reaction API](https://drive.google.com/file/d/1ujUdwStBSq8sNsZD5WDLanY9dN-kDyhk/view)
 
 ## License
 
