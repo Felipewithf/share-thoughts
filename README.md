@@ -16,9 +16,7 @@ In this app we can create users, update them and delete them. Be friend other us
 
 ## Installation
 
-Load <pre><code>npm i</code></pre> to install all the dependencis then log into your mysql databases, and run the following comands from the db folder
-
-<pre><code>source schema.sql </code></pre>
+Load <pre><code>npm i</code></pre> 
 
 Then you can run the application and test it!
 
